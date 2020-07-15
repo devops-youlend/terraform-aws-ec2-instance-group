@@ -10,6 +10,12 @@ variable "stage" {
   default     = ""
 }
 
+variable "environment" {
+  type        = string
+  description = "Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT'"
+  default     = ""
+}
+
 variable "name" {
   type        = string
   description = "Name of the application"
@@ -297,7 +303,8 @@ variable "hibernation" {
   description = "this will all for hibernation"
 }
 
-variable "encrypted" {
-  default = false
-  description = "encrypts root volume of instance"
+variable "permissions_boundary_arn" {
+  type        = string
+  description = "Policy ARN to attach to instance role as a permissions boundary"
+  default     = ""
 }
