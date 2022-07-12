@@ -82,3 +82,10 @@ output "instance_count" {
   value       = local.instance_count
   description = "Total number of instances created"
 }
+
+output "availability_zone" {
+  value       = local.availability_zone
+  description = "The availabilty zones to create the instance"
+}
+
+
