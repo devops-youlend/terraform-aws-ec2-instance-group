@@ -293,11 +293,11 @@ variable "instance_count" {
 }
 
 variable "hibernation" {
-  default = false
+  default     = false
   description = "this will all for hibernation"
 }
 
 variable "encrypted" {
-  default = false
+  default     = false
   description = "encrypts root volume of instance"
 }

@@ -87,6 +87,7 @@ resource "aws_iam_role" "default" {
   assume_role_policy = data.aws_iam_policy_document.default.json
 }
 
+#tfsec:ignore:aws-ec2-enable-at-rest-encryption
 resource "aws_instance" "default" {
   count                       = local.instance_count
   ami                         = data.aws_ami.info.id
@@ -101,10 +102,10 @@ resource "aws_instance" "default" {
   subnet_id                   = var.subnet
   monitoring                  = var.monitoring
   #private_ip                  = concat(var.private_ips, [""])[min(length(var.private_ips), count.index)]
-  source_dest_check           = var.source_dest_check
-  ipv6_address_count          = var.ipv6_address_count
-  ipv6_addresses              = var.ipv6_addresses
-  hibernation                 = var.hibernation
+  source_dest_check  = var.source_dest_check
+  ipv6_address_count = var.ipv6_address_count
+  ipv6_addresses     = var.ipv6_addresses
+  hibernation        = var.hibernation
 
   vpc_security_group_ids = compact(
     concat(
@@ -121,6 +122,9 @@ resource "aws_instance" "default" {
     iops                  = local.root_iops
     delete_on_termination = var.delete_on_termination
     encrypted             = var.encrypted
+  }
+  metadata_options {
+    http_tokens = "required"
   }
 
   tags = merge(

@@ -10,8 +10,10 @@ resource "aws_security_group" "default" {
   }
 }
 
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
 resource "aws_security_group_rule" "egress" {
   count             = var.create_default_security_group ? 1 : 0
+  description       = "Allow egress"
   type              = "egress"
   from_port         = 0
   to_port           = 65535
@@ -20,8 +22,10 @@ resource "aws_security_group_rule" "egress" {
   security_group_id = join("", aws_security_group.default.*.id)
 }
 
+#tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group_rule" "ingress" {
   count             = var.create_default_security_group ? length(compact(var.allowed_ports)) : 0
+  description       = "Ingress Allow"
   type              = "ingress"
   from_port         = var.allowed_ports[count.index]
   to_port           = var.allowed_ports[count.index]
