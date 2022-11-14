@@ -8,6 +8,11 @@ output "private_ips" {
   value       = aws_instance.default.*.private_ip
 }
 
+output "subnet_id" {
+  description = "Private subnet of instances"
+  value       = aws_instance.default.*.subnet_id
+}
+
 output "private_dns" {
   description = "Private DNS records of instances"
   value       = aws_instance.default.*.private_dns
