@@ -13,6 +13,11 @@ output "subnet_id" {
   value       = aws_instance.default.*.subnet_id
 }
 
+output "availability_zone" {
+  description = "Private subnet of instances"
+  value       = aws_instance.default.*.availability_zone
+}
+
 output "private_dns" {
   description = "Private DNS records of instances"
   value       = aws_instance.default.*.private_dns
