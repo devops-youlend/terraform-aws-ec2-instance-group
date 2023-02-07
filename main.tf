@@ -121,7 +121,7 @@ resource "aws_instance" "default" {
     }
   )
   lifecycle {
-    ignore_changes = [ami, subnet_id, tags, tags_all]
+    ignore_changes = [ami, subnet_id]
   }    
 }
 
