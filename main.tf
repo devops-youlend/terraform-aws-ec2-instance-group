@@ -142,7 +142,7 @@ resource "aws_instance" "default" {
 resource "aws_eip" "default" {
   count             = local.count_default_ips
   network_interface = aws_instance.default.*.primary_network_interface_id[count.index]
-  vpc               = true
+  domain            = "vpc"
   depends_on        = [aws_instance.default]
   tags              = module.this.tags
 }
