@@ -1,7 +1,7 @@
 locals {
   instance_count         = module.this.enabled ? var.instance_count : 0
   region                 = var.region != "" ? var.region : data.aws_region.default.name
-  root_iops              = var.root_volume_type == "io1" || var.root_volume_type == "gp3" ? var.root_iops : 0
+  root_iops              = var.root_volume_type == "io1" || var.root_volume_type == "gp3" ? var.root_iops : "3000"
   ebs_iops               = var.ebs_volume_type == "gp3" ? var.ebs_iops : 0
   availability_zone      = var.availability_zone
   root_volume_type       = var.root_volume_type != "" ? var.root_volume_type : data.aws_ami.info.root_device_type
